@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <div class="m-5 container text-center">
+        <% if (message != null) { %>
+            <h3> <%= message %> </h3>
+        <% } %>
+    </div>
+
+    <div style="margin-bottom: 550px;"></div>
+    <%-include('../partials/footer.ejs') %>
+  </body>
+</html>

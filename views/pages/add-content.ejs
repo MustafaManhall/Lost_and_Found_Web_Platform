@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <section class="my-5">
+              <div class="container">
+                <div>
+                  <div class="text-start">
+                    <h6 style="color: #526d82">Add Content</h6>
+                    <h1 style="color: #27374d">
+                      Post your Lost and Found Items our Platform!
+                    </h1>
+                  </div>
+                  <div class="container">
+                    <p class="lh-base text-start" style="color: #526d82; font-size: x-large;">
+                      <br>
+                      Share your discoveries or report lost items easily on our user-friendly platform. Whether you've found something misplaced or need help locating important belongings, contribute to reuniting lost possessions with their owners. Fill out a simple form with item details, descriptions, and photos to increase chances of a successful reunion. Join our community today, making a positive impact while fostering unity and support.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-sm">
+            <section class="py-3 mt-5">
+              <div class="container">
+                <div class="row justify-content-center">
+                  <div class="col-lg-10">
+                    <div class="card text-white" style="background-color: #526d82">
+
+                      <form class="m-4" method="POST" action="/add-content" enctype="multipart/form-data">
+                        
+                        <h6><%= message %></h6>
+
+                        <div class="mb-3">
+                          <label for="postTitle" class="form-label"
+                            >Post Title</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="postTitle"
+                            placeholder="Your Post Title"
+                            name="post_title"
+                            required
+                          />
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="postDescription" class="form-label"
+                            >Post Description</label
+                          >
+                          <textarea
+                            class="form-control"
+                            id="postDescription"
+                            rows="3"
+                            placeholder="Tell us about your post"
+                            name="post_des"
+                            required
+                          ></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="selectCategories" class="form-label"
+                            >Select Categories</label
+                          >
+                          <select class="form-select" id="selectCategories" name="post_cate">
+                            <option value="Others">Others</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Jewelry & Accessories">Jewelry & Accessories</option>
+                            <option value="Pets">Pets</option>
+                            <option value="Apparel & Accessories">Apparel & Accessories</option>
+                            <option value="Documents and IDs">Documents and IDs</option>
+                          </select>
+                          
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label">Upload Your Post Images</label>
+                          <input type="file" class="form-control" id="postImages" accept="image/*" name="post_image" required>
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label">Choose One</label>
+                          <div class="btn-group-horizental" role="group">
+                            <select class="form-select" name="post_lorf" id="lostorfound">
+                              <option value="Found">Found</option>
+                              <option value="Lost">Lost</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="mt-4">
+                          <button type="submit" class="btn btn-primary" style="background-color: #27374d;border: none; width: 100%;">
+                            Post
+                          </button>
+                        </div>
+
+                      </form>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <%- include('../partials/footer.ejs')%>
+  </body>
+</html>

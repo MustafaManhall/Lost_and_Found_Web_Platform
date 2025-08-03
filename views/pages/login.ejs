@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <section>
+      <div class="container">
+        <div class="text-center py-3">
+          <h1 style="color: #27374d">Log in</h1>
+          <p style="color: #526d82">
+            Access your account and unlock a world of lost and found
+            possibilities with just a few clicks
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="card text-white" style="background-color: #526d82">
+              <form class="m-4" action="/login" method="POST">
+                <div class="mb-3">
+                  <p><%= message %></p>
+
+                  <label for="email" class="form-label">Email</label>
+                  <input
+                    type="email"
+                    name="user_email"
+                    class="form-control"
+                    id="email"
+                    placeholder="yourEmail@Example.com"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="user_password"
+                    class="form-control"
+                    required
+                  />
+                </div>
+                
+                <div class="row">
+                  <div class="col">
+                    <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="showPassword"
+                    onchange="togglePassword()"/>
+                  <label class="form-check-label" for="showPassword">Show Password</label>
+                  </div>
+                  
+                  <div class="col nav-link">
+                    <a  type="submit" style="font-weight: bold; color: white; margin-left: 30%;" href="./change-password"> 
+                      Forget your password?
+                    </a>
+                  </div>
+                  
+                </div>
+
+                <div class="mt-3">
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="background-color: #27374d; border: none; width: 100%"
+                  >
+                    Log in
+                  </button>
+
+                  <div class="m-1 pt-2 nav-link text-center">
+                    <h6>You don't have Account?
+                      <a style="font-weight: bold; color: white;" href="/get-started"> 
+                        Create a new free account now
+                      </a>
+                    </h6>
+                  </div>
+                  
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function togglePassword() {
+        var passwordInput = document.getElementById("password");
+        var checkbox = document.getElementById("showPassword");
+        passwordInput.type = checkbox.checked ? "text" : "password";
+      }
+    </script>
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

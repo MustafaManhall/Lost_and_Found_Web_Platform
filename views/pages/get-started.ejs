@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <section>
+      <div class="container">
+
+        <section class="py-3">
+              <div class="container text-center">
+                <div>
+                  <div>
+                    <h1 style="color: #27374d">Get Started</h1>
+                  </div>
+                  <div class="container">
+                    <p
+                      class="lh-base"
+                      style="color: #526d82; font-size: x-large"
+                    >
+                    Begin your journey of reuniting lost items by joining our platform. Be part of a community dedicated to making a difference. Easily report found items, explore listings, and connect with like-minded individuals. We believe in the power of every lost item and their stories. Engage in discussions, share stories, and offer support. Utilize our intuitive interface to search our database and make connections. Join us today and help reunite lost items with their owners.
+                    </p>
+                  </div>
+                </div>
+              </div>
+        </section>
+
+        <section class="py-3">
+              <div class="container">
+                <div class="row justify-content-center">
+                  <div class="col-lg-10">
+                    <div
+                      class="card text-white"
+                      style="background-color: #526d82"
+                    >
+                      <form method="POST" action="/get-started" class="m-4" enctype="multipart/form-data">
+                        <div class="mb-3">
+                          <p style="color: red"><%= message %></p>
+                          <label for="profilePicture" class="form-label"
+                            >Add Profile Picture</label
+                          >
+                          <div class="input-group">
+                            <input
+                              type="file"
+                              class="form-control"
+                              id="profilePicture"
+                              accept="image/*"
+                              name="user_image"
+                            />
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="user_first_name" class="form-label"
+                            >First Name</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="firstName"
+                            placeholder="Your First Name"
+                            name="user_first_name"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="lastName" class="form-label"
+                            >Last Name</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="lastName"
+                            placeholder="Your Last Name"
+                            name="user_last_name"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="email" class="form-label">Email</label>
+                          <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            placeholder="yourEmail@example.com"
+                            name="user_email"
+                          />
+                        </div>
+                        <div class="form-check mb-3">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="hideEmail"
+                            name="hide_email"
+                          />
+                          <label class="form-check-label" for="hideEmail"
+                            >Hide From Others Email</label
+                          >
+                        </div>
+                        <div class="mb-3">
+                          <label for="phone" class="form-label"
+                            >Phone Number</label
+                          >
+                          <input
+                            type="tel"
+                            class="form-control"
+                            id="phone"
+                            name="user_phone_num"
+                            placeholder="Your Phone Number"
+                          />
+                        </div>
+                        <div class="form-check mb-3">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="hidePhone"
+                            name="hide_phone"
+                          />
+                          <label class="form-check-label" for="hidePhone"
+                            >Hide From Others Phone Number</label
+                          >
+                        </div>
+                        <div class="mb-3">
+                          <label for="bio" class="form-label">Bio</label>
+                          <textarea
+                            class="form-control"
+                            id="bio"
+                            rows="3"
+                            name="user_bio"
+                            placeholder="Tell us about yourself"
+                          ></textarea>
+                        </div>
+                        <div class="mb-3">
+                          <label for="password" class="form-label"
+                            >Password</label
+                          >
+                          <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            name="user_password"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label for="confirmPassword" class="form-label"
+                            >Confirm Password</label
+                          >
+                          <input
+                            type="password"
+                            class="form-control"
+                            id="confirmPassword"
+                            name="passwordCon"
+                          />
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="showPassword"
+                            onchange="togglePassword()"
+                          />
+                          <label class="form-check-label" for="showPassword"
+                            >Show Password</label
+                          >
+                        </div>
+                        <div class="mt-4">
+                          <button
+                            type="submit"
+                            class="btn btn-primary"
+                            style="
+                              background-color: #27374d;
+                              border: none;
+                              width: 100%;
+                            "
+                          >
+                            Register
+                          </button>
+
+                          <div class="m-1 pt-2 nav-link text-center">
+                            <h6>You already Account?
+                              <a style="font-weight: bold; color: white;" href="/login"> 
+                                Log in Now
+                              </a>
+                            </h6>
+                          </div>
+
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </section>
+
+      </div>
+    </section>
+
+    <script>
+      function togglePassword() {
+        var passwordInput = document.getElementById("password");
+        var confirmPassword = document.getElementById("confirmPassword");
+        var checkbox = document.getElementById("showPassword");
+        passwordInput.type = checkbox.checked ? "text" : "password";
+        confirmPassword.type = checkbox.checked ? "text" : "password";
+      }
+    </script>
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

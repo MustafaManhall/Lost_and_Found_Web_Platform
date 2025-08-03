@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <form method="POST" action="/archive-post/<%= post.post_id %>">
+      <div class="container">
+        <div class="card m-3 p-1">
+            
+            <div class="card-body">
+              <h5 class="card-title">Do you want to archive your post ?</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary">Archive Post</h6>
+            <% if (message != null) { %>
+                <h6> <%= message %> </h6>
+            <% } %>
+              <p class="card-text">
+                Archiving your post means that the following will happen:
+                  <br><br>
+                  1- Your contact information will be hidden from the post.<br>
+                  2- The post will be archived and you will not be able to undo this step<br>
+                  3- We recommend that you can archive your post after you find the real owner, or the real owner contacts you, or you find the thing you lost.<br>
+                  <br>
+                <b>Your post information:</b>
+                <br><br>
+                <b>Post title: </b><%= post.post_title %> <br>
+                <b>Post Description:</b> <%= post.post_des %> <br>
+                <b>Post Lost or Found:</b> <%= post.post_lorf %> <br>
+                <b>Post Category: </b><%= post.post_cate %> <br>
+                <b>Date :</b> <%= post.post_date %> <br>
+                <b>Post image:</b> will be Replaced with image labelled as archived.
+                <br><br>
+                best wishes
+              </p>
+              <a href="/" class="card-link btn btn-secondary">Close</a>
+              <button type="submit" class="card-link btn btn-primary" style="background-color: #27374d; border: none;">Archive Post</button>
+            </div>
+        </div>
+      </div>
+    </form>
+
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

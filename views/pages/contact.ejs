@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <div class="p-3 text-start">
+              <h6 style="color: #526d82">Contact us</h6>
+              <h1 style="color: #27374d">Get in touch with us!</h1>
+            </div>
+
+            <div class="container">
+              <p class="lh-base text-start" style="color: #526d82; font-size: x-large">
+                Have a question, feedback, or need assistance? Get in touch with our dedicated team. We're here to help you navigate our platform smoothly and provide support in reuniting lost items with their owners. Reach out to us through the contact form or find our contact details below. Feel free to customize and include your specific contact information, such as email address, phone number, or social media handles, to make it easier for users to reach you. Let me know if there's anything else I can assist you with!
+                <br> <br>
+              </p>
+
+              <h6 class="py-1" style="color: #526d82">
+                <img
+                  src="/public/icons/email-svgrepo-com.svg"
+                  alt="email icon"
+                  height="24"
+                  width="24"
+                />
+                Support@lostandfound.com
+              </h6>
+
+              <h6 class="py-1" style="color: #526d82">
+                <img
+                  src="/public/icons/call-svgrepo-com.svg"
+                  alt="call icon"
+                  height="24"
+                  width="24"
+                />
+                +9647812345678
+              </h6>
+              <h6 class="py-1" style="color: #526d82">
+                <img
+                  src="/public/icons/location-pin-svgrepo-com.svg"
+                  alt="location icon"
+                  height="24"
+                  width="24"
+                />
+                Iraq - baghdad
+              </h6>
+            </div>
+          </div>
+
+          <div class="col-sm">
+            
+            <div class="card text-white" style="background-color: #526d82; margin-top: 15%">
+
+              <form class="row m-5" method="POST" action="/contact">
+                <input type="hidden" name="userlog"
+                <% if (user != null) { %>
+                  value = "true"
+                <% } else { %>
+                  value = "false"
+                <% } %>
+                />
+                <h6><%= message %></h6>
+               
+                <div class="col">
+
+                  <div class="mb-3">
+                    <label for="firstname" class="form-label">First Name</label>
+                    <input
+                      type="firstname"
+                      name="user_first_name"
+                      class="form-control"
+                      id="firstname"
+                      placeholder="Mustafa"
+                      required
+                      <% if (user == null) { %>
+                        value= ""
+                      <% } else { %>
+                        value = "<%= user.user_first_name %>"
+                      <% } %>
+                      
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="phonenumber" class="form-label"
+                      >Phone Number</label
+                    >
+                    <input
+                      type="text"
+                      name="user_phone_num"
+                      class="form-control"
+                      id="phonenumber"
+                      placeholder="07XXXXXXXXX"
+                      required
+                      <% if (user == null) { %>
+                        value= ""
+                      <% } else { %>
+                        value = "<%= user.user_phone_num %>"
+                      <% } %>
+                      
+                    />
+                  </div>
+
+                </div>
+
+                <div class="col">
+
+                  <div class="mb-3">
+                    <label for="lastname" class="form-label">Last Name</label>
+                    <input
+                      name="user_lastname"
+                      type="lastname"
+                      class="form-control"
+                      id="lastname"
+                      placeholder="Manhal"
+                      required
+                      <% if (user == null) { %>
+                      value= ""
+                      <% } else { %>
+                      value = "<%= user.user_last_name %>"
+                      <% } %>
+                      
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      name="user_email"
+                      placeholder="yourEmail@Example.com"
+                      required
+                      <% if (user == null) { %>
+                        value= ""
+                      <% } else { %>
+                        value = "<%= user.user_email %>"
+                      <% } %>
+                      
+                    />
+                  </div>
+
+                </div>
+
+                <div class="mb-3">
+                  <label for="textarea1" class="form-label">Message</label>
+                  <textarea class="form-control" id="textarea1" rows="3" placeholder="Please type your message here..." name="user_message" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    
+                  <button
+                    id="myButton"
+                    class="btn btn-primary"
+                    style="background-color: #27374d; border: none"
+                    >
+                    Send message
+                  </button>
+
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+    
+    <script src="/public/Java script/Functions.js"></script>
+
+    <script>
+      document.getElementById("myButton").onclick = yourMessage;
+    </script>
+
+    
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

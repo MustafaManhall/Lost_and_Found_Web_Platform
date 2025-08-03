@@ -1,0 +1,26 @@
+# Ignore dependencies
+node_modules/
+
+# Ignore build outputs
+dist/
+build/
+
+# Ignore environment and log files
+.env
+*.env
+*.log
+npm-debug.log*
+
+# Ignore Mac system files
+.DS_Store
+*.DS_Store
+Thumbs.db
+
+# Ignore VS Code settings
+.vscode/
+
+# Test coverage
+coverage/
+
+# Lock files 
+package-lock.json

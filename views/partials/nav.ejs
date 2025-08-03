@@ -1,0 +1,209 @@
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-md bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img
+        class="img-fluid"
+        src="/public/Image.png"
+        style="height: 40px; width: fit-content"
+        alt="logo"
+      />
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainmenu"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div
+      class="nav collapse navbar-collapse justify-content-center"
+      id="mainmenu"
+    >
+      <ul class="navbar-nav">
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link"
+            aria-current="page"
+            id="pills-HomePage-tab"
+            data-bs-target="#pills-HomePage"
+            type="button"
+            role="tab"
+            aria-controls="pills-HomePage"
+            aria-selected="true"
+            href="/"
+            >Home Page</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="pills-OurCategory-tab"
+            data-bs-target="#pills-OurCategory"
+            type="button"
+            role="tab"
+            aria-controls="pills-OurCategory"
+            aria-selected="true"
+            href="/categories"
+            >Categories</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="pills-AddConten-tab"
+            data-bs-target="#pills-AddConten"
+            type="button"
+            role="tab"
+            aria-controls="pills-AddConten"
+            aria-selected="true"
+            href="/add-content"
+            >Add Content</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="pills-Contact-tab"
+            data-bs-target="#pills-Contact"
+            type="button"
+            role="tab"
+            aria-controls="pills-Contact"
+            aria-selected="true"
+            href="/contact"
+            >Contact</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="pills-AboutUs-tab"
+            data-bs-target="#pills-AboutUs"
+            type="button"
+            role="tab"
+            aria-controls="pills-AboutUs"
+            aria-selected="true"
+            href="/about-us"
+            >About Us</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="pills-faqs-tab"
+            data-bs-target="#pills-faqs"
+            type="button"
+            role="tab"
+            aria-controls="pills-faqs"
+            aria-selected="true"
+            href="/faqs"
+            >FAQs</a
+          >
+        </li>
+        <% if(user) { %>
+        <li class="nav-item d-block d-md-none">
+          <a
+            id="pills-Logout-tab"
+            class="nav-link"
+            data-bs-target="#pills-Logout"
+            type="button"
+            role="tab"
+            aria-controls="pills-Logout"
+            aria-selected="true"
+            href="/logout"
+            >Log out</a
+          >
+        </li>
+        <% } else { %>
+        <li class="nav-item d-block d-md-none">
+          <a
+            id="pills-Login-tab"
+            class="nav-link"
+            data-bs-target="#pills-Login"
+            type="button"
+            role="tab"
+            aria-controls="pills-Login"
+            aria-selected="true"
+            href="/login"
+            >Log in</a
+          >
+        </li>
+        <li class="nav-item d-block d-md-none">
+          <a
+            id="pills-Getstarted-tab"
+            class="nav-link"
+            data-bs-target="#pills-Getstarted"
+            type="button"
+            role="tab"
+            aria-controls="pills-Getstarted"
+            aria-selected="true"
+            href="/get-started"
+            >Get started</a
+          >
+        </li>
+        <% } %>
+      </ul>
+    </div>
+
+    <div class="d-flex nav-item d-none d-md-block">
+      <% if(user) { %>
+      <a href="/profile" 
+      class="link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+      style="font-weight: bold; color: #000; text-decoration: none;">
+      <img 
+      alt="User Photo" class="rounded-circle" style="width: 40px; height: 40px;"
+      src="../../<%= user.user_image %>"
+      >
+      <h6 class="d-inline-flex">
+        <%= user.user_first_name %> <%= user.user_last_name %>
+      </h6>
+      </a>
+      <a
+        href="/logout"
+        class="btn btn-danger ms-lg-2 ms-sm-1"
+        role="button"
+        aria-disabled="true"
+        style="border: none; margin: auto"
+        >Log out</a
+      >
+      <% } else { %>
+      <a
+        href="/login"
+        class="btn btn-outline-dark"
+        style="border-color: #27374d"
+        role="button"
+        aria-disabled="true"
+        >Log in</a
+      >
+
+      <a
+        href="/get-started"
+        class="btn btn-primary ms-lg-2 ms-sm-1"
+        role="button"
+        aria-disabled="true"
+        style="background: #27374d; border: none"
+        >Get started</a
+      >
+      <% } %>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Get the current page URL
+  const currentPage = window.location.pathname;
+
+  // Get all navigation links
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  // Add the "active" class to the corresponding link
+  navLinks.forEach((link) => {
+    if (link.getAttribute("href") === currentPage) {
+      link.classList.add("active");
+    }
+  });
+</script>

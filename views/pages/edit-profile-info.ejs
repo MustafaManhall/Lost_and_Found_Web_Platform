@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <section class="py-3">
+      <div class="container text-center">
+        <div>
+          <h1 style="color: #27374d">Edit your Profile information</h1>
+          <p style="color: #526d82">
+            Take control of your Profile by easily updating and customizing your
+            profile information. Personalize your profile, add a bio,
+            <br />upload a profile picture, and share relevant details to
+            enhance your connections within the community.
+          </p>
+        </div>
+      </div>
+      <section>
+        <div class="container justify-content-center col-6">
+          <div class="card text-white" style="background-color: #526d82">
+            <form class="m-4" method="POST" action="/edit-profile" enctype="multipart/form-data">
+              <h6><%= message %></h6>
+              <div class="mb-3">
+                <label for="profilePicture" class="form-label">
+                  Change Profile Picture : </label>
+                <div class="input-group">
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="profilePicture"
+                    accept="image/*"
+                    name="user_image"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstName"
+                  placeholder="Your First Name"
+                  required
+                  name="user_first_name"
+                  <% if (user == null) { %>
+                    value= ""
+                  <% } else { %>
+                    value = "<%= user.user_first_name%>"
+                  <% } %>
+                />
+              </div>
+              <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastName"
+                  placeholder="Your Last Name"
+                  required
+                  name="user_last_name"
+                  <% if (user == null) { %>
+                    value= ""
+                  <% } else { %>
+                    value = "<%= user.user_last_name %>"
+                  <% } %>
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="yourEmail@example.com"
+                  required
+                  name="user_email"
+                  <% if (user == null) { %>
+                    value= ""
+                  <% } else { %>
+                    value = "<%= user.user_email %>"
+                  <% } %>
+                />
+              </div>
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="hideEmail"
+                  name="hide_email"
+                />
+                <label class="form-check-label" for="hideEmail"
+                  >Hide Your Email From Others</label
+                >
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="phone"
+                  placeholder="Your Phone Number"
+                  required
+                  name="user_phone_num"
+                  <% if (user == null) { %>
+                    value= ""
+                  <% } else { %>
+                    value = "<%= user.user_phone_num %>"
+                  <% } %>
+                />
+              </div>
+              <div class="form-check mb-3">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="hidePhone"
+                  name="hide_phone"
+                />
+                <label class="form-check-label" for="hidePhone"
+                  >Hide Your Phone Number From Others</label
+                >
+              </div>
+              <div class="mb-3">
+                <label for="bio" class="form-label">Bio</label>
+                <textarea class="form-control" id="bio" rows="3" required name="user_bio" 
+                placeholder="Tell us about yourself"><%=user.user_bio%></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="userPassword" name="user_password" />
+              </div>
+              
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="showPassword"
+                  onchange="togglePassword()"
+                />
+                <label class="form-check-label" for="showPassword"
+                  >Show Password</label>
+              </div>
+              <div class="mt-4">
+                <button
+                  id="myButton"
+                  class="btn btn-primary"
+                  style="background-color: #27374d; border: none; width: 100%"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+            
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <script>
+      function togglePassword() {
+        var passwordInput = document.getElementById("userPassword");
+        var checkbox = document.getElementById("showPassword");
+        passwordInput.type = checkbox.checked ? "text" : "password";
+      }
+    </script>
+
+    <script src="/public/Java script/Functions.js"></script>
+
+    <script>
+      document.getElementById("myButton").onclick = eidtYourProfile;
+    </script>
+
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

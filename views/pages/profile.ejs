@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+    
+    <style>
+      .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Number of lines to show */
+        -webkit-box-orient: vertical;
+      }
+      .card-img-top {
+        max-width: 100%; /* Set maximum width to 100% of its container */
+        max-height: 300px; /* Set maximum height to 200 pixels */
+        object-fit: cover; /* Ensure the image covers the container without stretching */
+      }
+    </style>
+
+    <section>
+      <div class="container">
+
+        <div class="p-1 m-2 text-start">
+          <h1 style="color: #27374d">Your Profile</h1>
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm">
+            <section class="py-3">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <div
+                      class="card text-white"
+                      style="background-color: #526d82"
+                    >
+                    
+                      <div class="m-4">
+                        <div class="text-center profile-picture mx-auto">
+                          <img
+                            src="<%=photo%>"
+                            alt="Profile Picture"
+                            id="profileImage"
+                            class="img-fluid rounded-circle"
+                            
+                          />
+                          
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="name" class="form-label">Name</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            value="<%= user.user_first_name%> <%= user.user_last_name%>"
+                            placeholder="Your Name"
+                            disabled
+                          />
+                        </div>
+
+                        <div class="row">
+
+                          <div class="col-sm">
+                            <div class="mb-3">
+                              <label for="email" class="form-label"
+                                >Email</label
+                              >
+                              <% if (user.hide_email == null) { %>
+                              <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                value="<%= user.user_email %>"
+                                placeholder="yourEmail@example.com"
+                                disabled
+                              />
+                              <%} else if (user.hide_email == 'on') { %>
+                                <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                value="Not visible"
+                                placeholder="yourEmail@example.com"
+                                disabled
+                              />
+                              <%}%>
+                            </div>
+                          </div>
+
+                          <div class="col-sm">
+                            <div class="mb-3">
+                              <label for="phone" class="form-label"
+                                >Phone</label
+                              >
+                              <% if (user.hide_phone == null) { %>
+                              <input
+                                type="tel"
+                                class="form-control"
+                                id="phone"
+                                value="<%= user.user_phone_num %>"
+                                placeholder="Your Phone Number"
+                                disabled
+                              />
+                              <%} else if (user.hide_phone == 'on') { %>
+                                <input
+                                type="tel"
+                                class="form-control"
+                                id="phone"
+                                value="Not visible"
+                                placeholder="Your Phone Number"
+                                disabled
+                              />
+                              <%}%>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="mb-3">
+                          <label for="bio" class="form-label">Bio</label>
+                          <textarea
+                            class="form-control"
+                            id="bio"
+                            rows="3"
+                            placeholder="Tell us about yourself"
+                            disabled
+                          ><%= user.user_bio%></textarea>
+                        </div>
+                        <div class="text-center">
+                          <a
+                            type="button"
+                            class="btn btn-primary"
+                            href="/edit-profile"
+                            style="background-color: #27374d; border: none"
+                          >
+                            Edit Profile
+                          </a>
+                          <a
+                            type="button"
+                            class="btn btn-primary m-2"
+                            href="/change-password"
+                            style="background-color: #27374d; border: none"
+                          >
+                          Change Password
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <section class="py-3">
+             <div class="container">
+              <div>
+                <% if (message != null) { %>
+                <h6 style="color: #27374d;"> <%= message %> </h6>
+                <% } %>
+                <div class="row d-flex flex-wrap">
+                    <% for (let i = 0; i < posts.length; i++) { %>
+                    <% if (posts[i] != null) { %>
+                    
+                      <% if (i % 3 === 0) { %>
+                        <% if (i !== 0) { %>
+                        <div class="w-100"></div> <!-- Add this to start a new row -->
+                      <% } %>
+                      <% } %>
+          
+                      <div class="col mt-3">
+                        <div class="card h-auto w-auto" style="border-radius: 24px">
+                          <img
+                            src="../../<%= posts[i].post_image %>"
+                            class="card-img-top h-75 p-3"
+                            style="border-radius: 24px"
+                            alt=""
+                          />
+                          <div class="card-body">
+                            <h5 class="card-title" style="color: #27374d">
+                              <span class="<%= posts[i].post_lorf === 'Lost' ? 'text-warning' : posts[i].post_lorf === 'Found' ? 'text-success' : 'text-secondary' %>"> <%= posts[i].post_lorf %> : </span> <%= posts[i].post_title %>
+                            </h5>
+                            <p class="card-text truncate" style="color: #526d82">
+                              <%= posts[i].post_des %>
+                            </p>
+                            <a href="/post/<%=posts[i].post_id%>" class="btn btn-dark">Learn more</a>
+                          </div>
+                        </div>
+                      </div>
+          
+                    <% } } %>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+
+        </div>
+      </div>
+    </section>
+    
+   
+    <%- include('../partials/footer.ejs') %>
+  </body>
+</html>

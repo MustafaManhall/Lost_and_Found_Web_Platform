@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/header.ejs') %>
+  <body>
+    <%- include('../partials/nav.ejs') %>
+
+    <section>
+      <div class="container">
+        <div class="container text-center m-1">
+          <div>
+            <h1 style="color: #27374d">Edit your Post information</h1>
+            <p style="color: #526d82">
+              Take control of your Post by easily updating and customizing your
+              post information.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-sm">
+            <section class="py-1 mt-1">
+              <div class="container">
+                <div class="row justify-content-center">
+                  <div>
+
+                  </div>
+                  <div class="col-lg-10">
+                    <div class="card text-white" style="background-color: #526d82">
+
+                      <form class="m-4" method="POST" action="/edit-post/<%= post.post_id %>" enctype="multipart/form-data">
+                        
+                        <h6><%= message %></h6>
+
+                        <input type="hidden" name="post_id" value="<%= post.post_id %>">
+
+                        <div class="mb-3">
+                          <label for="postTitle" class="form-label"
+                            >Post Title</label
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="postTitle"
+                            placeholder="Your Post Title"
+                            name="post_title"
+                            value="<%= post.post_title %>"
+                            required
+                          />
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="postDescription" class="form-label"
+                            >Post Description</label
+                          >
+                          <textarea
+                            class="form-control"
+                            id="postDescription"
+                            rows="3"
+                            placeholder="Tell us about your post"
+                            name="post_des"
+                            required
+                          ><%= post.post_des %></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="selectCategories" class="form-label"
+                            >Select Categories</label
+                          >
+                          <select class="form-select" id="selectCategories" name="post_cate">
+                            <option value="<%=post.post_cate%>"><%=post.post_cate%></option>
+                            <% if (post.post_cate != 'Others') {%>
+                            <option value="Others">Others</option>
+                            <% } if (post.post_cate != 'Electronics') { %>
+                            <option value="Electronics">Electronics</option>
+                            <% } if (post.post_cate != 'Jewelry & Accessories') { %>
+                            <option value="Jewelry & Accessories">Jewelry & Accessories</option>
+                            <% } if (post.post_cate != 'Pets') { %>
+                            <option value="Pets">Pets</option>
+                            <% } if (post.post_cate != 'Apparel & Accessories') { %>
+                            <option value="Apparel & Accessories">Apparel & Accessories</option>
+                            <% } if (post.post_cate != 'Documents and IDs') { %>
+                            <option value="Documents and IDs">Documents and IDs</option>
+                            <% } %>
+                          </select>
+                          
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label">Upload Your Post Images</label>
+                          <input type="file" class="form-control" id="postImages" accept="image/*" name="post_image" required>
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label">Choose One</label>
+                          <div class="btn-group-horizental" role="group">
+                            <select class="form-select" name="post_lorf" id="lostorfound">
+                              <option value="<%=post.post_lorf%>"><%=post.post_lorf%></option>
+                              <% if (post.post_lorf != 'Found') {%>
+                              <option value="Found">Found</option>
+                              <% } else if (post.post_lorf != 'Lost') { %>
+                              <option value="Lost">Lost</option>
+                              <% } %>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="mt-4">
+                          <button type="submit" class="btn btn-primary" style="background-color: #27374d;border: none; width: 100%;">
+                            Edit
+                          </button>
+                        </div>
+
+                      </form>
+                      
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    
+    <%- include('../partials/footer.ejs')%>
+  </body>
+</html>
